@@ -1,0 +1,10 @@
+# Dependências do Node
+node_modules/
+
+# Arquivos de ambiente
+.env
+.env.local
+
+# Outros arquivos temporários
+.DS_Store
+*.log
