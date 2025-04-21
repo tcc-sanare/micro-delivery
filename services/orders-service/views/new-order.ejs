@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/new-order.css">
+  <title>Novo pedido</title>
+</head>
+<body>
+  <h1>Novo pedido</h1>
+  <form action="/orders" method="post">
+    <div>
+      <label for="pratos">
+        Pratos:
+        <select id="pratos" name="pratos" required>
+          <% pratos.forEach(prato => { %>
+            <option value="<%= prato.id_prato %>">
+              <%= prato.nome %> - R$<%= prato.preco %>
+            </option>
+          <% }) %>
+        </select>
+        <input type="hidden" name="dishes" value="[]">
+        <input 
+          type="number" 
+          id="qtd" 
+          name="qtd" 
+          placeholder="Quantidade" 
+        >
+        <input type="text" 
+          id="observacoes-prato"
+          placeholder="Observações"
+        >
+        <button type="button" onclick="addDish()">Adicionar</button>
+      </label>
+      <ul id="pratos-selecionados"></ul>
+    </div>
+
+    <input type="hidden" name="id_cliente" value="1">
+    <input name="endereco" type="text" placeholder="Endereço de entrega" required>
+    <input type="text" name="telefone" placeholder="Telefone para contato" required>
+    <select name="metodo_pagamento" id="">
+      <option value="credito">Cartão de crédito</option>
+      <option value="debito">Cartão de débito</option>
+      <option value="dinheiro">Dinheiro</option>
+      <option value="pix">Pix</option>
+    </select>
+
+    <input type="text" name="observacoes" placeholder="Observações adicionais">
+    <button type="submit">Criar pedido</button>
+  </form>
+
+  <script>
+    function addDish() {
+      const pratosSelect = document.getElementById('pratos');
+      const pratoId = pratosSelect.value;
+      const pratoQtd = document.getElementById('qtd').value;
+      const pratoObs = document.getElementById('observacoes-prato').value;
+      const pratosInput = document.querySelector('input[name="dishes"]');
+      const pratoNome = pratosSelect.options[pratosSelect.selectedIndex].text;
+      const pratosArray = JSON.parse(pratosInput.value);
+
+      pratosArray.push({
+        id_prato: +pratoId,
+        quantidade: +pratoQtd,
+        observacoes: +pratoObs
+      });
+
+      const pratosOption = pratosSelect.options[pratosSelect.selectedIndex];
+      pratosInput.value = JSON.stringify(pratosArray);
+      pratosSelect.value = '';
+      document.getElementById('qtd').value = '';
+      document.getElementById('observacoes-prato').value = '';
+      pratosOption.remove();
+
+      const pratosSelecionadosUl = document.getElementById('pratos-selecionados');
+      const pratoSelecionadoLi = document.createElement('li');
+      pratoSelecionadoLi.textContent = `Prato: ${pratoNome}, Quantidade: ${pratoQtd}, Observações: ${pratoObs}`;
+
+      pratosSelecionadosUl.appendChild(pratoSelecionadoLi);
+    }
+  </script>
+</body>
+</html>

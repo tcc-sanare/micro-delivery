@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/update-status.css">
+  <title>Atualizar Status</title>
+</head>
+<body>
+  <h1>Atualizar status</h1>
+  <form action="/orders/<%= order.id_pedido %>/status" method="post">
+    <label for="status">Status:</label>
+    <select name="status" id="status">
+      <option value="recebido">Recebido</option>
+      <option value="preparando">Preparando</option>
+      <option value="pronto">Pronto</option>
+      <option value="em_entrega">Em entrega</option>
+      <option value="entregue">Entregue</option>
+      <option value="cancelado">Cancelado</option>
+    </select>
+    <button type="submit">Atualizar</button>
+</body>
+</html>

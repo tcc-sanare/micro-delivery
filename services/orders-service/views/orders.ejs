@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="orders.css">
+  <title>Pedidos</title>
+</head>
+<body>
+  <section>
+    <h1>Meus pedidos</h1>
+    <a href="/orders/new">
+      <button>Criar novo pedido</button>
+    </a>
+  </section>
+  <ul>
+    <% orders.forEach(order => { %>
+      <li>
+        <strong>Pedido ID:</strong> <%= order.id_pedido %><br>
+        <strong>Data:</strong> <%= order.data_pedido.toLocaleDateString('pt-br') %><br>
+        <strong>Status:</strong> <%= order.status %><br>
+        <strong>Total:</strong> R$<%= order.valor_total %><br>
+        <a href="/orders/<%= order.id_pedido %>/update">Atualizar Status</a>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>
