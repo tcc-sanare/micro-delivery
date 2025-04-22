@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/deliveries.css">
+  <title>Minhas Entregas</title>
+</head>
+<body>
+  <section>
+    <h1>Minhas Entregas</h1>
+    <a href="/deliveries/pending">Entregas Disponiveis</a>
+  </section>
+  <ul>
+    <% deliveries.forEach(function(delivery) { %>
+      <li>
+        <strong>Pedido:</strong> <%= delivery.id_pedido %><br>
+        <strong>Cliente:</strong> <%= delivery.cliente.nome %><br>
+        <strong>Endereço:</strong> <%= delivery.endereco.rua %><br>
+        <strong>Status:</strong> <%= delivery.pedido.status %><br>
+      </li>
+    <% }); %>
+</body>
+</html>

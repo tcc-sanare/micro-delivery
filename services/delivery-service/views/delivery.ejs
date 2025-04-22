@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/delivery.css">
+  <title>Delivery <%= delivery.id_entrega %></title>
+</head>
+<body>
+  <h1>Rota de entrega</h1>
+  <form action="/deliveries/<%= delivery.id_entrega %>/entregar" method="POST">
+    <h2>Pedido: <%= delivery.id_pedido %></h2>
+    <h3>Endereço: <%= delivery.endereco.rua %></h3>
+
+    <button>Entregar</button>
+  </form>
+
+  <script>
+    setInterval(() => {
+      navigator.geolocation.getCurrentPosition(position => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        // fetch('/deliveries/<%= delivery.id_entrega %>/location', {
+        //   method: 'POST',
+        //   headers: {
+        //     'Content-Type': 'application/json'
+        //   },
+        //   body: JSON.stringify({ 
+        //     latitude: lat * 1e6,
+        //     longitude: lon * 1e6
+        //   })
+        // });
+      }, error => {
+        console.error('Error getting location:', error);
+      });
+    }, 5000);
+  </script>
+</body>
+</html>
