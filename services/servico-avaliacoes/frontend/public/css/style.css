@@ -4,6 +4,20 @@ body {
     margin: 0;
     padding: 20px;
   }
+
+  .container h1{
+    display: flex;
+    margin-left: 50px;
+    font-size: 40px;
+  }
+
+  form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+  }
   
   .login-container {
     max-width: 400px;
@@ -21,16 +35,29 @@ body {
   input {
     width: 100%;
     padding: 10px;
+    width: 50%;
     border: 1px solid #ddd;
     border-radius: 4px;
   }
+
+  textarea{
+    display: flex;
+    padding: 15px;
+    outline: none;
+    font-size: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    max-height: 200px;
+    min-height: 200px;
+    min-width: 500px;
+  }
   
   button {
-    background-color: #ff6b6b;
+    background-color: #a40000;
     color: white;
     border: none;
     padding: 12px;
-    width: 100%;
+    width: 150px;
     border-radius: 4px;
     cursor: pointer;
   }
