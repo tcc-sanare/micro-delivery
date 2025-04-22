@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/index.css">
+  <title>Cardápio</title>
+</head>
+<body>
+
+    <h1>Cardápio de Pratos</h1>
+    <main>
+    <% pratos.forEach(prato => { %>
+        <div>
+            <p><strong>Nome:</strong> <%= prato.nome %></p>
+            <p><strong>Descrição:</strong>: <%= prato.descricao || 'Sem descrição' %></p>
+            <p><strong>Preço:</strong> R$ <%= prato.preco %></p>
+            <p><strong>Ingredientes:</strong> <%= prato.ingredientes || 'Sem ingredientes informados' %></p>
+            <p><strong>Tempo de preparo:</strong> <%= prato.tempo_preparo %> minutos</p>
+            <p><strong>Disponível:</strong> <%= prato.disponivel ? 'Sim' : 'Não' %></p>
+            <p><strong>Destaque:</strong> <%= prato.destaque ? 'Sim' : 'Não' %></p>
+            <button onclick="window.location.href='/dishes/edit/<%= prato.id_prato %>'">Editar</button>
+        </div>
+
+    <% }) %>
+    </main>
+  
+</body>
+</html>

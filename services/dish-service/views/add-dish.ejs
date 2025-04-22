@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/addDish.css">
+  <title>Adicionar Prato</title>
+</head>
+<body>
+
+  <h1>Adicionar Novo Prato</h1>
+  
+  <!-- Formulário para adicionar prato -->
+  <form action="/dishes" method="POST">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" required><br>
+
+    <label for="descricao">Descrição:</label>
+    <textarea id="descricao" name="descricao"></textarea><br>
+
+    <label for="preco">Preço:</label>
+    <input type="number" id="preco" name="preco" step="0.01" required><br>
+
+    <label for="ingredientes">Ingredientes:</label>
+    <textarea id="ingredientes" name="ingredientes"></textarea><br>
+
+    <label for="tempo_preparo">Tempo de Preparo (em minutos):</label>
+    <input type="number" id="tempo_preparo" name="tempo_preparo" required><br>
+
+    <label for="disponivel">Disponível:</label>
+    <input type="checkbox" id="disponivel" name="disponivel" checked><br>
+
+    <label for="destaque">Destaque:</label>
+    <input type="checkbox" id="destaque" name="destaque"><br>
+
+    <input hidden value="1" name="id_restaurante">
+
+    <button type="submit">Adicionar Prato</button>
+  </form>
+
+</body>
+</html>

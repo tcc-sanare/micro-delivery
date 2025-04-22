@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/index.css">
+    <title>Editar Preço</title>
+</head>
+<body>
+    <h1>Editar Item</h1>
+    <main>
+            <div>
+                <p><strong>Nome:</strong> <%= prato.nome %></p>
+                <p><strong>Descrição:</strong>: <%= prato.descricao || 'Sem descrição' %></p>
+                <p><strong>Preço atual:</strong> R$ <%= prato.preco %></p>
+                <p><strong>Ingredientes:</strong> <%= prato.ingredientes || 'Sem ingredientes informados' %></p>
+                <p><strong>Tempo de preparo:</strong> <%= prato.tempo_preparo %> minutos</p>
+                <p><strong>Disponível:</strong> <%= prato.disponivel ? 'Sim' : 'Não' %></p>
+                <p><strong>Destaque:</strong> <%= prato.destaque ? 'Sim' : 'Não' %></p>
+
+            </div>
+
+            <div>
+                <form action="/dishes/<%= prato.id_prato %>" method="POST">
+                    <input type="hidden" id="id" value="<%= prato.id_prato %>">
+                    <input type="hidden" id="id-restaurante" value="<%= prato.id_restaurante %>">
+
+                    <label for="novoPreco"><strong>Novo preço:</strong></label>
+                    <input type="number" id="preco" name="preco">
+                    <button type="submit">Alterar</button>
+                </form>
+            </div>
+    
+        </main>
+
+        <script>
+            document.querySelector('form').addEventListener('submit', (ev) => {
+                ev.preventDefault()
+                const newPrice = document.getElementById('preco').value;
+                const pratoId = document.getElementById('id').value;
+                const idRestaurante = document.getElementById('id-restaurante').value;
+
+                fetch(`/dishes/${pratoId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ preco: newPrice })
+                })
+                .then(res => {
+                    window.location.href=`/dishes/${idRestaurante}`
+                })
+            })
+        </script>
+</body>
+</html>
